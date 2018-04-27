@@ -24,6 +24,13 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3A-JZ-qsZ">
+                                <rect key="frame" x="334" y="79" width="31" height="30"/>
+                                <state key="normal" title="搜尋"/>
+                                <connections>
+                                    <action selector="btn_Search:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XWc-ey-cmL"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="00:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SIS-pf-Tep">
                                 <rect key="frame" x="10" y="562" width="46" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -80,10 +87,11 @@
                                 </constraints>
                                 <state key="normal" image="full_screen_button"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3A-JZ-qsZ">
-                                <rect key="frame" x="334" y="79" width="31" height="30"/>
-                                <state key="normal" title="搜尋"/>
-                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gb8-kV-X47">
+                                <rect key="frame" x="0.0" y="228" width="375" height="211"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
