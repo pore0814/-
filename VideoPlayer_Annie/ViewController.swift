@@ -11,8 +11,14 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
+    @IBOutlet weak var videoSilder: UISlider!
+    @IBOutlet weak var videoCurrentTimeLabel: UILabel!
+    @IBOutlet weak var videoLengthLabel: UILabel!
+    
+    @IBOutlet weak var silentsound: UIButton!
     @IBOutlet weak var pausplaybutton: UIButton!
     var isPlaying = false
+    var isSilent  = false
     
   //  var playerItem : AVPlayerItem!
     var player : AVPlayer?
@@ -22,16 +28,26 @@ class ViewController: UIViewController {
         super.viewDidLoad()
 
         }
-       
- 
+    
+    @IBAction func silentSound(_ sender: Any) {
+        if isSilent{
+        player?.volume = 0
+        silentsound.setImage(UIImage(named: "volume_off"), for: .normal)
+        }else{
+        player?.volume = 1
+        silentsound.setImage(UIImage(named: "volume_up"), for: .normal)
+        }
+        isSilent = !isSilent
+    }
+    
     @IBAction func btn_Search(_ sender: Any) {
-        
         search_Text.text = "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4"
         if search_Text.text == "" {
             print("enter url")
         }else{
               //setupPlayer(urlStirng: search_Text.text!)
             setupPlayer()
+           
             }
         }
   
@@ -59,16 +75,46 @@ class ViewController: UIViewController {
                 playerLayer.frame = self.view.bounds
                 self.view.layer.addSublayer(playerLayer)
                 player?.play()
-            
-        }
-        
+               
+               
+                    if let duration = player?.currentItem?.asset.duration {
+                        let seconds = CMTimeGetSeconds(duration)
+                        let secondsText = Int(seconds) % 60
+                        let minutesText = String(format: "%02d", Int(seconds)/60)
+                        videoLengthLabel.text = "\(minutesText):\(secondsText)"
+                
+                // track player progress
+                
+                let interval = CMTime(value: 1, timescale: 2)
+                       
+                        player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
+                            let seconds = CMTimeGetSeconds(progressTime)
+                            let secondsString = String(format: "%02d", Int(seconds) % 60)
+                            let minutesString = String(format: "%02d", Int(seconds) / 60 )
+                            self.videoCurrentTimeLabel.text = "\(minutesString):\(secondsString)"
+                            
+                // move the slider thumb
+                            if let duration = self.player?.currentItem?.asset.duration{
+                               let durationSeconds = CMTimeGetSeconds(duration)
+                                self.videoSilder.value = Float(seconds/durationSeconds)
+                            }
+                        })
+                        
+                    }
+                }
         }
     
+    
+
+    
   
+            
+        }
+
     
         
 
-    }
+
 
 
 

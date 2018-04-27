@@ -43,9 +43,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="4aT-Kf-r1V">
+                            <slider opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.29999999999999999" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="4aT-Kf-r1V">
                                 <rect key="frame" x="64" y="553" width="247" height="31"/>
                                 <color key="minimumTrackTintColor" red="0.43083285110000002" green="0.45519868829999999" blue="0.97395833330000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="maximumTrackTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </slider>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YgX-Fo-EhF">
                                 <rect key="frame" x="47.5" y="613" width="24" height="24"/>
@@ -54,6 +55,9 @@
                                     <constraint firstAttribute="width" constant="24" id="neY-Kg-NWZ"/>
                                 </constraints>
                                 <state key="normal" image="volume_up"/>
+                                <connections>
+                                    <action selector="silentSound:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jrL-ZN-a8x"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cBJ-RR-tbT">
                                 <rect key="frame" x="111.5" y="613" width="24" height="24"/>
@@ -129,6 +133,10 @@
                     <connections>
                         <outlet property="pausplaybutton" destination="bv5-hq-Q1s" id="fkO-UQ-M7U"/>
                         <outlet property="search_Text" destination="9gy-yj-mNB" id="trQ-Wc-sjM"/>
+                        <outlet property="silentsound" destination="YgX-Fo-EhF" id="Xmm-B3-ZEN"/>
+                        <outlet property="videoCurrentTimeLabel" destination="SIS-pf-Tep" id="Bd3-y8-bqf"/>
+                        <outlet property="videoLengthLabel" destination="xEk-wf-0kB" id="l4Q-1l-FJA"/>
+                        <outlet property="videoSilder" destination="4aT-Kf-r1V" id="Qf2-W7-mQ2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
