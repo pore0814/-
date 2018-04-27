@@ -17,11 +17,14 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var silentsound: UIButton!
     @IBOutlet weak var pausplaybutton: UIButton!
+    
     var isPlaying = false
     var isSilent  = false
     
+    
   //  var playerItem : AVPlayerItem!
     var player : AVPlayer?
+    var seconds:Float64?
 
     @IBOutlet weak var search_Text: UITextField!
     override func viewDidLoad() {
@@ -41,17 +44,23 @@ class ViewController: UIViewController {
     }
     
     @IBAction func btn_Search(_ sender: Any) {
-        search_Text.text = "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4"
+        //search_Text.text = "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4"
         if search_Text.text == "" {
             print("enter url")
         }else{
               //setupPlayer(urlStirng: search_Text.text!)
-            setupPlayer()
+            setupPlayer(urlString: search_Text.text!)
            
             }
         }
   
 
+    @IBAction func fastForward(_ sender: Any) {
+        
+       
+      
+       
+    }
     
     @IBAction func pausePlayButton(_ sender: Any) {
         if isPlaying{
@@ -67,8 +76,8 @@ class ViewController: UIViewController {
         
         
        // func setupPlayer(urlStirng: String) {
-           func setupPlayer() {
-            if let url = URL(string: "https://s3-ap-northeast-1.amazonaws.com/mid-exam/Video/taeyeon.mp4"){
+    func setupPlayer(urlString:String) {
+            if let url = URL(string: urlString){
                 print(url )
                 player = AVPlayer(url: url)
                 let playerLayer = AVPlayerLayer(player: player)
@@ -78,7 +87,7 @@ class ViewController: UIViewController {
                
                
                     if let duration = player?.currentItem?.asset.duration {
-                        let seconds = CMTimeGetSeconds(duration)
+                        var seconds = CMTimeGetSeconds(duration)
                         let secondsText = Int(seconds) % 60
                         let minutesText = String(format: "%02d", Int(seconds)/60)
                         videoLengthLabel.text = "\(minutesText):\(secondsText)"
@@ -88,7 +97,7 @@ class ViewController: UIViewController {
                 let interval = CMTime(value: 1, timescale: 2)
                        
                         player?.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { (progressTime) in
-                            let seconds = CMTimeGetSeconds(progressTime)
+                           seconds = CMTimeGetSeconds(progressTime)
                             let secondsString = String(format: "%02d", Int(seconds) % 60)
                             let minutesString = String(format: "%02d", Int(seconds) / 60 )
                             self.videoCurrentTimeLabel.text = "\(minutesString):\(secondsString)"
@@ -106,7 +115,12 @@ class ViewController: UIViewController {
     
     
 
+    @IBAction func fullScreen(_ sender: Any) {
+        
+        
+        
     
+    }
   
             
         }
